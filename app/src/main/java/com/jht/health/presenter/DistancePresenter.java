@@ -17,7 +17,6 @@ public class DistancePresenter extends BaseTypePresenter{
     private static final String TAG = Utils.APPLICATION_TAG + "DistancePresenter";
     private static final int MILLISECOND = 1000;
     private DistanceTraining mDistanceTraining;
-    private MyCountDownTimer mMyCountDownTimer;
     private long mNeedTime = 0;
     private long mCurrentDistance = 0;
     private long mTarget = 0;
