@@ -1,6 +1,5 @@
 package com.jht.health;
 
-import com.jht.health.training.BaseTraining;
 
 /**
  * Created by yangjing on 2018/1/25.
@@ -12,14 +11,17 @@ public interface TrainingContract {
         void showErrorInfo();
         void showTime(String  time);
         void showSpeed(int speed);
-        void showDistance(int distance);
+        void showDistance(String distance);
         void showHeartRate(int heartRate);
         void showIncline(int incline);
+        void updateInformation(long time,long distance);
     }
 
     interface Presenter extends BasePresenter {
-        void setTargetDistance(int distance);
+        void setTarget(long target);
         void setSpeed(int speed);
+        void setPause();
+        void setResume();
         // updateInformation(String s);
     }
 }

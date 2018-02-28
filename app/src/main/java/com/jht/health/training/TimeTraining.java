@@ -2,16 +2,16 @@ package  com.jht.health.training;
 
 
 public class TimeTraining extends BaseTraining {
-    private int mTargetTime = 0;
+    private long mTargetTime = 0;
 
     public TimeTraining() {
     }
 
-    public TimeTraining(int time) {
+    public TimeTraining(long time) {
         setTargetTime(time);
     }
 
-    private void setTargetTime(int time) {
+    public void setTargetTime(long time) {
         mTargetTime = time;
     }
 }

@@ -6,7 +6,8 @@ import com.jht.health.utils.Utils;
 
 public class DistanceTraining extends BaseTraining {
     private static final String TAG = Utils.APPLICATION_TAG + "DistanceTraining";
-    private int mTargetDistance = 0;
+    private long mTargetDistance = 0;
+    private long mNeedTime = 0;
 
     public DistanceTraining() {
     }
@@ -15,7 +16,7 @@ public class DistanceTraining extends BaseTraining {
         setTargetDistance(distance);
     }
 
-    public void setTargetDistance(int distance) {
+    public void setTargetDistance(long distance) {
         mTargetDistance = distance;
     }
 
@@ -23,14 +24,14 @@ public class DistanceTraining extends BaseTraining {
         mSpeed = speed;
     }*/
 
-    public int calculateTime() {
+    public long calculateTime() {
         int speed = getSpeed();
-        int time = 0;
-        Log.d(TAG, "calculateTime speed" + speed + " time " + time);
+        //int time = 0;
+        Log.d(TAG, "calculateTime distance " + mTargetDistance + " speed " + speed);
         if(0 == speed) {
             return -1;
         }
-        time = (int) (mTargetDistance/speed);
-        return time;
+        mNeedTime = mTargetDistance/speed;
+        return mNeedTime;
     }
 }

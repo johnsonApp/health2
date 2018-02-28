@@ -8,10 +8,10 @@ public class HeartRateTraining extends BaseTraining {
     }
 
     public HeartRateTraining(int heartRate) {
-        setTargetDistance(heartRate);
+        setTargetHeartRate(heartRate);
     }
 
-    private void setTargetDistance(int heartRate) {
-        mTargetHeartRate = heartRate;
+    public void setTargetHeartRate(long heartRate) {
+        mTargetHeartRate = (int)heartRate;
     }
 }

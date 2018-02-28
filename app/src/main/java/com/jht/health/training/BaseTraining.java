@@ -14,13 +14,13 @@ public class BaseTraining {
     //calorie
     private int mCalorie;
     //time second
-    private int mTimes;
+    private long mTimes;
     //incline
     private int mIncline;
     //heartRate
     private int mHeartRate;
     //distance mile
-    private int mDistance;
+    private long mDistance;
 
     protected BaseTraining () {
         setDefaultValue();
@@ -33,19 +33,19 @@ public class BaseTraining {
         mCalorie = calorie;
     }
 
-    public void setTimes(int times) {
+    public void setTimes(long times) {
         mTimes = times;
     }
 
-    public void setInclie (int inclie) {
-        mIncline = inclie;
+    public void setInclie (int incline) {
+        mIncline = incline;
     }
 
     public void setHeartRate(int heartRate) {
         mHeartRate = heartRate;
     }
 
-    public void setDistance(int distance) { mDistance = distance; }
+    public void setDistance(long distance) { mDistance = distance; }
 
     public int getSpeed() {
         return mSpeed;
@@ -55,7 +55,7 @@ public class BaseTraining {
         return mCalorie;
     }
 
-    public int getTimes() {
+    public long getTimes() {
         return mTimes;
     }
 
@@ -67,7 +67,7 @@ public class BaseTraining {
         return mHeartRate;
     }
 
-    public int getDistnce() {
+    public long getDistnce() {
         return mDistance;
     }
 

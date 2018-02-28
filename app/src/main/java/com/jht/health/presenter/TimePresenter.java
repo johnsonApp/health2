@@ -2,9 +2,8 @@ package com.jht.health.presenter;
 
 import android.util.Log;
 
-
 import com.jht.health.TrainingContract;
-import com.jht.health.training.DistanceTraining;
+import com.jht.health.training.TimeTraining;
 import com.jht.health.utils.Utils;
 
 
@@ -12,22 +11,21 @@ import com.jht.health.utils.Utils;
  * Created by yangjing on 2018/1/25.
  */
 
-public class DistancePresenter extends BaseTypePresenter{
+public class TimePresenter extends BaseTypePresenter{
 
-    private static final String TAG = Utils.APPLICATION_TAG + "DistancePresenter";
+    private static final String TAG = Utils.APPLICATION_TAG + "TimePresenter";
     private static final int MILLISECOND = 1000;
-    private DistanceTraining mDistanceTraining;
-    private MyCountDownTimer mMyCountDownTimer;
+    private TimeTraining mTimeTraining;
     private long mNeedTime = 0;
     private long mCurrentDistance = 0;
     private long mTarget = 0;
     private int mSpeed = 0;
-    public DistancePresenter(TrainingContract.View view, long targetDistance, int speed) {
+    public TimePresenter(TrainingContract.View view, long targetTime, int speed) {
         mTrainingView = view;
-        mDistanceTraining = new DistanceTraining();
-        setTrainingType(mDistanceTraining);
-        if(0 != targetDistance) {
-            mTarget = targetDistance;
+        mTimeTraining = new TimeTraining();
+        setTrainingType(mTimeTraining);
+        if(0 != targetTime) {
+            mTarget = targetTime;
         }
         if(0 != speed) {
             mSpeed = speed;
@@ -45,15 +43,11 @@ public class DistancePresenter extends BaseTypePresenter{
     }
 
     public void setTrainingTarget(long target) {
-        long data = target;
-        if(target > mCurrentDistance) {
-            data -= mCurrentDistance;
-        }
-        mDistanceTraining.setTargetDistance(data);
+        mTimeTraining.setTargetTime(target);
     }
 
     public void setTrainingSpeed(int speed) {
-        mDistanceTraining.setSpeed(speed);
+        mTimeTraining.setSpeed(speed);
     }
 
     public long getCurrentDistance () {
@@ -63,17 +57,11 @@ public class DistancePresenter extends BaseTypePresenter{
     public void start() {
         setTrainingTarget(mTarget);
         setTrainingSpeed(mSpeed);
-        mNeedTime = mDistanceTraining.calculateTime();
+        mNeedTime = mTarget;
         Log.d(TAG, "start mNeedTime " + mNeedTime);
         if(mNeedTime > 0) {
             stopTimer();
             initTimer();
-            /*if(null != mMyCountDownTimer) {
-                mMyCountDownTimer.cancel();
-                mMyCountDownTimer = null;
-            }
-            mMyCountDownTimer = new MyCountDownTimer(mNeedTime, MILLISECOND);
-            mMyCountDownTimer.start();*/
         }else {
             mTrainingView.showErrorInfo();
         }
@@ -82,19 +70,17 @@ public class DistancePresenter extends BaseTypePresenter{
     @Override
     public void updateInformation() {
         long time = getCurrentTime();
-        if(null == mDistanceTraining) {
+        if(null == mTimeTraining) {
             return ;
         }
-        mCurrentDistance += mDistanceTraining.getSpeed();
-        if(mCurrentDistance > mTarget) {
+        mCurrentDistance += mTimeTraining.getSpeed();
+        if(time > mTarget) {
             mCurrentDistance = 0;
             clearCurrentTime();
             stopTimer();
             return;
         }
         mTrainingView.updateInformation(time, mCurrentDistance);
-        //mTrainingView.showTime(String.valueOf(getCurrentTime()));
-        //mTrainingView.showDistance(String.valueOf(distance));
     }
 
 }
